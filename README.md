@@ -46,7 +46,22 @@ The following features are planned for future updates:
    ```bash
    git clone https://github.com/your-username/solar-system-simulation.git
    cd solar-system-simulation
-2. Install dependencies (GLFW, GLM, etc.) if not already installed. You can use
+   
+2. Install dependencies (GLFW, GLM, etc.) if not already installed. You can use a package manager like vcpkg or install them manually.
+
+3. Build the project:
+bash
+Copy code
+mkdir build
+cd build
+cmake ..
+make
+
+4. Run the simulation:
+
+bash
+Copy code
+./solar_system_simulation
 
 
 ### Contributing
