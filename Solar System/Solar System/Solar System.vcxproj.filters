@@ -19,9 +19,6 @@
     <Filter Include="Resource Files\shaders\default">
       <UniqueIdentifier>{da6232a1-013a-4546-8c46-37cd21281411}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\shaders\cubemap">
-      <UniqueIdentifier>{d7c06af4-9ec8-4aae-9825-30c412b11506}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -74,9 +71,6 @@
     <ClInclude Include="transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.frag">
@@ -84,9 +78,6 @@
     </None>
     <None Include="default.vert">
       <Filter>Resource Files\shaders\default</Filter>
-    </None>
-    <None Include="cubemap.vert">
-      <Filter>Resource Files\shaders\cubemap</Filter>
     </None>
   </ItemGroup>
 </Project>

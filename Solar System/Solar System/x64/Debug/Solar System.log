@@ -1,1 +1,3 @@
-﻿  Solar System.vcxproj -> C:\Users\Etka\source\repos\Solar3D\Solar System\x64\Debug\Solar System.exe
+﻿  main.cpp
+C:\Users\Etka\source\repos\Solar3D\Solar System\Solar System\main.cpp(72,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Solar System.vcxproj -> C:\Users\Etka\source\repos\Solar3D\Solar System\x64\Debug\Solar System.exe
