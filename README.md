@@ -45,8 +45,8 @@ The following features are planned for future updates:
 
 2. Open and build the solution.
 
-[!NOTE]
-If there is any errors please do not hesitate to create an issue.
+> [!NOTE]
+> If there is any errors please do not hesitate to create an issue.
 
 ### Contributing
 If you'd like to contribute to this project, feel free to open an issue or submit a pull request. Please ensure your code adheres to the project's coding standards and you write tests for new features.
