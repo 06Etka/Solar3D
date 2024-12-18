@@ -9,16 +9,16 @@ class Transform
 public:
 	Transform();
 
-	void setPosition(glm::vec3& newPos);
+	void setPosition(const glm::vec3& newPos);
 	glm::vec3 getPosition() const;
 
-	void setRotation(glm::vec3& newRot);
+	void setRotation(const glm::vec3& newRot);
 	glm::vec3 getRotation() const;
 
-	void setScale(glm::vec3& newScl);
+	void setScale(const glm::vec3& newScl);
 	glm::vec3 getScale() const;
 
-	void setModel(glm::mat4& model);
+	void setModel(const glm::mat4& model);
 	glm::mat4 getModel() const;
 
 private:

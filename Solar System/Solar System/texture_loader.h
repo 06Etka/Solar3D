@@ -11,7 +11,7 @@
 class TextureLoader
 {
 public:
-	void loadTexture(std::string& path);
+	void loadTexture(const std::string& path);
 
 	void bindTexture();
 

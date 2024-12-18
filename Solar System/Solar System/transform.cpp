@@ -7,28 +7,28 @@ Transform::Transform()
 
 }
 
-void Transform::setPosition(glm::vec3& newPos) {
+void Transform::setPosition(const glm::vec3& newPos) {
 	position = newPos;
 	updateModelMatrix();
 }
 
 glm::vec3 Transform::getPosition() const { return position; }
 
-void Transform::setRotation(glm::vec3& newRot) {
+void Transform::setRotation(const glm::vec3& newRot) {
 	rotation = newRot;
 	updateModelMatrix();
 }
 
 glm::vec3 Transform::getRotation() const { return rotation; }
 
-void Transform::setScale(glm::vec3& newScl) {
+void Transform::setScale(const glm::vec3& newScl) {
 	scale = newScl;
 	updateModelMatrix();
 }
 
 glm::vec3 Transform::getScale() const { return scale; }
 
-void Transform::setModel(glm::mat4& model) {
+void Transform::setModel(const glm::mat4& model) {
 	modelMatrix = model;
 }
 

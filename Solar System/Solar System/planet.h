@@ -23,9 +23,9 @@ struct Index {
 class Planet : public Transform
 {
 public:
-	Planet(const float radius, std::string& texturePath);
+	Planet(const float radius, const std::string& texturePath, const glm::vec3& startPosition);
 
-    void draw(glm::mat4& proj, glm::mat4& view);
+    void draw(glm::mat4& proj, glm::mat4& view, glm::vec3& cameraPosition);
 
 private:
     void setupMesh();

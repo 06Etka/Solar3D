@@ -1,7 +1,8 @@
 #include "planet.h"
 
-Planet::Planet(const float radius, std::string& texturePath) : radius(radius) {
+Planet::Planet(const float radius, const std::string& texturePath, const glm::vec3& startPosition) : radius(radius) {
 	setupMesh();
+    setPosition(startPosition);
     textureLoader.loadTexture(texturePath);
 }
 
@@ -70,12 +71,13 @@ void Planet::createUVSphere(float radius, unsigned int rings, unsigned int segme
     }
 }
 
-void Planet::draw(glm::mat4& proj, glm::mat4& view) {
+void Planet::draw(glm::mat4& proj, glm::mat4& view, glm::vec3& cameraPosition) {
     textureLoader.bindTexture();
     shader->use();
     shader->setMat4("projection", proj);
     shader->setMat4("view", view);
     shader->setMat4("model", getModel());
+    shader->setVec3("viewPos", cameraPosition);
 
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, indices.size() * 3, GL_UNSIGNED_INT, 0);

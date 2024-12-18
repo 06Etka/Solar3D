@@ -1,3 +1,6 @@
 ﻿  main.cpp
-C:\Users\Etka\source\repos\Solar3D\Solar System\Solar System\main.cpp(72,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Etka\source\repos\Solar3D\Solar System\Solar System\main.cpp(37,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  planet.cpp
+C:\Users\Etka\source\repos\Solar3D\Solar System\Solar System\planet.cpp(83,49): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Generating Code...
   Solar System.vcxproj -> C:\Users\Etka\source\repos\Solar3D\Solar System\x64\Debug\Solar System.exe
