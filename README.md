@@ -68,4 +68,4 @@ Copy code
 If you'd like to contribute to this project, feel free to open an issue or submit a pull request. Please ensure your code adheres to the project's coding standards and you write tests for new features.
 
 ### License
-This project is licensed under the CC0 1.0 Universal (Public Domain Dedication) license. You can freely use, modify, and distribute the project for any purpose without restrictions. For more details, see the [LICENSE](#LICENSE) file.
+This project is licensed under the CC0 1.0 Universal (Public Domain Dedication) license. You can freely use, modify, and distribute the project for any purpose without restrictions. For more details, see the [LICENSE](LICENSE) file.
