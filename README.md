@@ -17,8 +17,8 @@ This project is a simple 3D solar system simulation created using C++ and OpenGL
 
 ## Screenshots
 
-![Planets Scene](image)  
-*Description of what this image shows (e.g., "A screenshot of the scene showing stationary planets with their textures.")*
+![Planets Scene](resources/main.png)  
+*Sun and Gaia*
 
 ## Future Plans
 
