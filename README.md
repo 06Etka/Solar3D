@@ -41,7 +41,7 @@ The following features are planned for future updates:
 
 ### Build Instructions
 
-1. Download the repository and unzip it
+1. Download the repository and unzip it.
 
 2. Open and build the solution.
 
