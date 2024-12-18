@@ -41,28 +41,11 @@ The following features are planned for future updates:
 
 ### Build Instructions
 
-1. Clone the repository:
+1. Download the repository and unzip it
 
-   ```bash
-   git clone https://github.com/your-username/solar-system-simulation.git
-   cd solar-system-simulation
-   
-2. Install dependencies (GLFW, GLM, etc.) if not already installed. You can use a package manager like vcpkg or install them manually.
+2. Open and build the solution.
 
-3. Build the project:
-bash
-Copy code
-mkdir build
-cd build
-cmake ..
-make
-
-4. Run the simulation:
-
-bash
-Copy code
-./solar_system_simulation
-
+If there is any errors please do not hesitate to create an issue.
 
 ### Contributing
 If you'd like to contribute to this project, feel free to open an issue or submit a pull request. Please ensure your code adheres to the project's coding standards and you write tests for new features.
