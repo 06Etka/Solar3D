@@ -45,6 +45,7 @@ The following features are planned for future updates:
 
 2. Open and build the solution.
 
+[!NOTE]
 If there is any errors please do not hesitate to create an issue.
 
 ### Contributing
