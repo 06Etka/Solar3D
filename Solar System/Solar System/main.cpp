@@ -1,4 +1,8 @@
-﻿#include <vector>
+﻿#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 
 #include <glm/glm.hpp>
@@ -13,19 +17,30 @@ const float SKYBOX_COLOR[3] = { 0.0f, 0.05f, 0.1f };
 float deltaTime;
 float lastTime;
 
+Planet createPlanet(Camera& camera, const std::string& shaderName, const std::string& texturePath,
+	const glm::vec3& scale, const glm::vec3& position) 
+{
+	Planet planet(camera, shaderName, texturePath);
+	planet.setScale(scale);
+	planet.setPosition(position);
+	return planet;
+}
+
 int main() {
 	Window window;
-    Camera camera(glm::vec3(0.0f, 0.0f, 500.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	
-	Planet sun(139.2000f, "assets/sun.png", glm::vec3(0.0f, 0.0f, 0.0f));
-	Planet mercury(0.4879f, "assets/mercury.png", glm::vec3(579.0f / 1.2f, 0.0f, 0.0f));
-	Planet venus(1.2104f, "assets/venus.png", glm::vec3(1082.0f / 1.2f, 0.0f, 0.0f));
-	Planet earth(1.2756f, "assets/earth.png", glm::vec3(1496.0f / 1.2f, 0.0f, 0.0f));
-	Planet mars(0.6779f, "assets/mars.png", glm::vec3(2279.0f / 1.2f, 0.0f, 0.0f));
-	Planet jupiter(14.2984f, "assets/jupiter.png", glm::vec3(7786.0f / 1.2f, 0.0f, 0.0f));
-	Planet saturn(12.0000f, "assets/saturn.png", glm::vec3(14335.0f / 1.2f, 0.0f, 0.0f));
-	Planet uranus(5.1118f, "assets/uranus.png", glm::vec3(28725.0f / 1.2f, 0.0f, 0.0f));
-	Planet neptune(4.9244f, "assets/neptune.png", glm::vec3(44951.0f / 1.2f, 0.0f, 0.0f));
+    Camera camera(glm::vec3(0.0f, 0.0f, 500.0f), glm::vec3(0.0f, 1.0f, 0.0f), window);
+
+	std::vector<Planet> planets = {
+		createPlanet(camera, "planet", "assets/sun.png", glm::vec3(139.2f), glm::vec3(0.0f)),
+		createPlanet(camera, "planet", "assets/mercury.png", glm::vec3(0.4879f), glm::vec3(579.0f, 0.0f, 0.0f)),
+		createPlanet(camera, "planet", "assets/venus.png", glm::vec3(1.2104f), glm::vec3(1082.0f, 0.0f, 0.0f)),
+		createPlanet(camera, "planet", "assets/earth.png", glm::vec3(1.2756f), glm::vec3(1496.0f, 0.0f, 0.0f)),
+		createPlanet(camera, "planet", "assets/mars.png", glm::vec3(0.6779f), glm::vec3(2279.0f, 0.0f, 0.0f)),
+		createPlanet(camera, "planet", "assets/jupiter.png", glm::vec3(14.2984f), glm::vec3(7786.0f, 0.0f, 0.0f)),
+		createPlanet(camera, "planet", "assets/saturn.png", glm::vec3(12.0f), glm::vec3(14335.0f, 0.0f, 0.0f)),
+		createPlanet(camera, "planet", "assets/uranus.png", glm::vec3(5.1118f), glm::vec3(28725.0f, 0.0f, 0.0f)),
+		createPlanet(camera, "planet", "assets/neptune.png", glm::vec3(4.9244f), glm::vec3(44951.0f, 0.0f, 0.0f)),
+	};
 
     glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
@@ -41,19 +56,13 @@ int main() {
 		glClearColor(SKYBOX_COLOR[0], SKYBOX_COLOR[1], SKYBOX_COLOR[2], 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		camera.update(window.getWindow(), window.getWidth(), window.getHeight(), deltaTime);
-        glm::mat4 proj = camera.getProjectionMatrix(window.getWidth(), window.getHeight());
+		camera.update(deltaTime);
+        glm::mat4 proj = camera.getProjectionMatrix();
         glm::mat4 view = camera.getViewMatrix();
 
-		sun.draw(proj, view, camera.Position);
-		mercury.draw(proj, view, camera.Position);
-		venus.draw(proj, view, camera.Position);
-		earth.draw(proj, view, camera.Position);
-		mars.draw(proj, view, camera.Position);
-		jupiter.draw(proj, view, camera.Position);
-		saturn.draw(proj, view, camera.Position);
-		uranus.draw(proj, view, camera.Position);
-		neptune.draw(proj, view, camera.Position);
+		for (auto& planet : planets) {
+			planet.update(deltaTime);
+		}
 
 		glfwPollEvents();
 		glfwSwapBuffers(window.getWindow());

@@ -2,8 +2,9 @@
 
 
 Transform::Transform() 
-	: position(0.0f), rotation(0.0f), scale(1.0f), modelMatrix(1.0f)
-{
+	: position(0.0f), rotation(0.0f), scale(1.0f), modelMatrix(1.0f) {}
+
+void Transform::update(float deltaTime) {
 
 }
 

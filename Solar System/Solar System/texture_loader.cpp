@@ -20,6 +20,6 @@ void TextureLoader::loadTexture(const std::string& path) {
     stbi_image_free(data);
 }
 
-void TextureLoader::bindTexture() {
+void TextureLoader::bindTexture() const {
     glBindTexture(GL_TEXTURE_2D, texture);
 }

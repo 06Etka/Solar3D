@@ -4,10 +4,14 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-class Transform
+#include "component.h"
+
+class Transform : public Component
 {
 public:
 	Transform();
+
+	void update(float deltaTime) override;
 
 	void setPosition(const glm::vec3& newPos);
 	glm::vec3 getPosition() const;

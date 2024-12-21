@@ -13,7 +13,7 @@ class TextureLoader
 public:
 	void loadTexture(const std::string& path);
 
-	void bindTexture();
+	void bindTexture() const;
 
 private:
 	unsigned int texture;

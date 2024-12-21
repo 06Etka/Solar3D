@@ -9,7 +9,10 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-class Camera
+#include "window.h"
+#include "transform.h"
+
+class Camera : public Transform
 {
 public:
     glm::vec3 Position;
@@ -27,20 +30,22 @@ public:
     const float NEAR = 0.01f;
     const float FAR = 1000000.0f;
 
-    Camera(glm::vec3 position, glm::vec3 up);
-    Camera(float posX, float posY, float posZ, float upX, float upY, float upZ);
+    Camera(glm::vec3 position, glm::vec3 up, Window& window);
+    Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, Window& window);
 
-    glm::mat4 getProjectionMatrix(const int width, const int height);
+    glm::mat4 getProjectionMatrix();
     glm::mat4 getViewMatrix();
 
-	void update(GLFWwindow* window, const int width, const int height, float deltaTime);
+	void update(float deltaTime);
 
 private:
     void updateCameraVectors();
 
     void processMouseMovement(float xOffset, float yOffset, bool constrainPitch);
-    void handleMovement(GLFWwindow* window, float deltaTime);
-    void toggleCursorVisibility(GLFWwindow* window, int width, int height);
+    void handleMovement(float deltaTime);
+    void toggleCursorVisibility();
+
+    Window& window;
 };
 
 #endif // !CAMERA_H
