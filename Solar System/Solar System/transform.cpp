@@ -4,10 +4,6 @@
 Transform::Transform() 
 	: position(0.0f), rotation(0.0f), scale(1.0f), modelMatrix(1.0f) {}
 
-void Transform::update(float deltaTime) {
-
-}
-
 void Transform::setPosition(const glm::vec3& newPos) {
 	position = newPos;
 	updateModelMatrix();
@@ -40,9 +36,8 @@ void Transform::updateModelMatrix() {
 
 	modelMatrix = glm::translate(modelMatrix, position);
 
-	modelMatrix = glm::rotate(modelMatrix, rotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
-	modelMatrix = glm::rotate(modelMatrix, rotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
-	modelMatrix = glm::rotate(modelMatrix, rotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
+	glm::quat quaternionRotation = glm::quat(glm::radians(rotation));
+	modelMatrix *= glm::mat4_cast(quaternionRotation);
 
 	modelMatrix = glm::scale(modelMatrix, scale);
 }

@@ -4,26 +4,23 @@
 #include <iostream>
 #include <memory>
 
-#include "component.h"
 #include "mesh.h"
-#include "material.h"
 #include "camera.h"
 
 #include <glad/glad.h>
 
 
-class MeshRenderer : public Component
+class MeshRenderer
 {
 public:
-	MeshRenderer(Mesh* mesh, Material* material = nullptr);
+	MeshRenderer(Mesh* mesh);
 
-	void update(float deltaTime) override;
+	void render();
 
 private:
 	void setupMesh();
 
 	Mesh* mesh;
-	Material* material;
 
 	unsigned int VAO, VBO, EBO;
 

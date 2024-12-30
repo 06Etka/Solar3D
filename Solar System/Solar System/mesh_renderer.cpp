@@ -1,15 +1,9 @@
 #include "mesh_renderer.h"
 
-MeshRenderer::MeshRenderer(Mesh* mesh, Material* material) : 
-    mesh(mesh), material(material) 
+MeshRenderer::MeshRenderer(Mesh* mesh) : 
+    mesh(mesh)
 {
 	setupMesh();
-}
-
-void MeshRenderer::update(float deltaTime) {
-    material->update(deltaTime);
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, mesh->indices.size() * 3, GL_UNSIGNED_INT, 0);
 }
 
 void MeshRenderer::setupMesh() {
@@ -36,4 +30,9 @@ void MeshRenderer::setupMesh() {
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+}
+
+void MeshRenderer::render() {
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, mesh->indices.size() * 3, GL_UNSIGNED_INT, 0);
 }

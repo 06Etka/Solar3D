@@ -1,36 +1,28 @@
 #ifndef PLANET_H
 #define PLANET_H
 
-#include <vector>
-#include <string>
-#include <memory>
+#include <glm/gtc/type_ptr.hpp>
 
-#include <glm/glm.hpp>
-#include <GLFW/glfw3.h>
+#include "celestial_body.h"
+#include "shader.h"
+#include "camera.h"
 
-#include "transform.h"
-#include "mesh.h"
-#include "mesh_renderer.h"
-#include "material.h"
-#include "texture_loader.h"
-#include "rigidbody.h"
-
-class Planet : public Transform
+class Planet : public CelestialBody
 {
 public:
-	Planet(Camera& camera, const std::string& shaderName, const std::string& texturePath);
-	~Planet();
+	Planet(const std::string& texturePath, CelestialBody* orbitParent, float mass, float orbitRadius, float eccentricity);
 
 	void update(float deltaTime);
-
-	float force = 0;
+	void render();
 
 private:
-	Mesh* mesh;
-	MeshRenderer* meshRenderer;
-	Material* material;
-	TextureLoader* textureLoader;
-	Rigidbody* rigidbody;
+	Shader* shader;
+	Camera& camera;
+
+	CelestialBody* orbitParent;
+	float orbitRadius;
+	float eccentricity;
+	float angle = 0.0f;
 };
 
 #endif // !PLANET_H

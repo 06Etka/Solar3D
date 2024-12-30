@@ -4,10 +4,6 @@ Mesh::Mesh() {
 	createSphere(vertices, indices);
 }
 
-void Mesh::update(float deltaTime) {
-
-}
-
 void Mesh::createSphere(std::vector<Vertex>& vertices, std::vector<Index>& indices) {
     for (unsigned int ring = 0; ring <= RINGS; ++ring) {
         float theta = ring * M_PI / RINGS;

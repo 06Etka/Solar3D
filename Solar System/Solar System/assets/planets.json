@@ -1,0 +1,66 @@
+[
+    {
+      "name": "sun",
+      "shaderName": "planet",
+      "asset": "assets/sun.png",
+      "scale": [139.2],
+      "position": [0.0, 0.0, 0.0]
+    },
+    {
+      "name": "mercury",
+      "shaderName": "planet",
+      "asset": "assets/mercury.png",
+      "scale": [0.4879],
+      "position": [579.0, 0.0, 0.0]
+    },
+    {
+      "name": "venus",
+      "shaderName": "planet",
+      "asset": "assets/venus.png",
+      "scale": [1.2104],
+      "position": [1082.0, 0.0, 0.0]
+    },
+    {
+      "name": "earth",
+      "shaderName": "planet",
+      "asset": "assets/earth.png",
+      "scale": [1.2756],
+      "position": [1496.0, 0.0, 0.0]
+    },
+    {
+      "name": "mars",
+      "shaderName": "planet",
+      "asset": "assets/mars.png",
+      "scale": [0.6779],
+      "position": [2279.0, 0.0, 0.0]
+    },
+    {
+      "name": "jupiter",
+      "shaderName": "planet",
+      "asset": "assets/jupiter.png",
+      "scale": [14.2984],
+      "position": [7786.0, 0.0, 0.0]
+    },
+    {
+      "name": "saturn",
+      "shaderName": "planet",
+      "asset": "assets/saturn.png",
+      "scale": [12.0],
+      "position": [14335.0, 0.0, 0.0]
+    },
+    {
+      "name": "uranus",
+      "shaderName": "planet",
+      "asset": "assets/uranus.png",
+      "scale": [5.1118],
+      "position": [28725.0, 0.0, 0.0]
+    },
+    {
+      "name": "neptune",
+      "shaderName": "planet",
+      "asset": "assets/neptune.png",
+      "scale": [4.9244],
+      "position": [44951.0, 0.0, 0.0]
+    }
+  ]
+  

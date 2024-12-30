@@ -1,72 +1,82 @@
 ﻿#include <iostream>
-#include <fstream>
-#include <sstream>
 #include <string>
 #include <vector>
-
 
 #include <glm/glm.hpp>
 
 #include "window.h"
 #include "camera.h"
 #include "shader.h"
-#include "planet.h"
+#include "input_manager.h"
+#include "skybox.h"
+#include "solar_system.h"
 
-const float SKYBOX_COLOR[3] = { 0.0f, 0.05f, 0.1f };
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_glfw.h"
+#include "imgui/imgui_impl_opengl3.h"
+
+const float SKYBOX_COLOR[3] = { 1.0f, 1.0f, 1.0f };
 
 float deltaTime;
 float lastTime;
 
-Planet createPlanet(Camera& camera, const std::string& shaderName, const std::string& texturePath,
-	const glm::vec3& scale, const glm::vec3& position) 
-{
-	Planet planet(camera, shaderName, texturePath);
-	planet.setScale(scale);
-	planet.setPosition(position);
-	return planet;
-}
-
 int main() {
-	Window window;
-    Camera camera(glm::vec3(0.0f, 0.0f, 500.0f), glm::vec3(0.0f, 1.0f, 0.0f), window);
+	Window::getInstance().initialize();
+	Camera::getInstance().initialize(glm::vec3(0.0f, 0.0f, 50.0), glm::vec3(0.0f, 1.0f, 0.0f));
+	InputManager::getInstance().initialize();
+	Skybox skybox;
 
-	std::vector<Planet> planets = {
-		createPlanet(camera, "planet", "assets/sun.png", glm::vec3(139.2f), glm::vec3(0.0f)),
-		createPlanet(camera, "planet", "assets/mercury.png", glm::vec3(0.4879f), glm::vec3(579.0f, 0.0f, 0.0f)),
-		createPlanet(camera, "planet", "assets/venus.png", glm::vec3(1.2104f), glm::vec3(1082.0f, 0.0f, 0.0f)),
-		createPlanet(camera, "planet", "assets/earth.png", glm::vec3(1.2756f), glm::vec3(1496.0f, 0.0f, 0.0f)),
-		createPlanet(camera, "planet", "assets/mars.png", glm::vec3(0.6779f), glm::vec3(2279.0f, 0.0f, 0.0f)),
-		createPlanet(camera, "planet", "assets/jupiter.png", glm::vec3(14.2984f), glm::vec3(7786.0f, 0.0f, 0.0f)),
-		createPlanet(camera, "planet", "assets/saturn.png", glm::vec3(12.0f), glm::vec3(14335.0f, 0.0f, 0.0f)),
-		createPlanet(camera, "planet", "assets/uranus.png", glm::vec3(5.1118f), glm::vec3(28725.0f, 0.0f, 0.0f)),
-		createPlanet(camera, "planet", "assets/neptune.png", glm::vec3(4.9244f), glm::vec3(44951.0f, 0.0f, 0.0f)),
-	};
+	SolarSystem solarSystem;
+
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+	ImGui_ImplGlfw_InitForOpenGL(Window::getInstance().getWindow(), true);
+	ImGui_ImplOpenGL3_Init();
 
     glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_FRONT);
-	glFrontFace(GL_CW);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);
+    glFrontFace(GL_CW);
 
-	while (!glfwWindowShouldClose(window.getWindow()))
+	while (!glfwWindowShouldClose(Window::getInstance().getWindow()))
 	{
 		float currentTime = glfwGetTime();
 		deltaTime = currentTime - lastTime;
 		lastTime = currentTime;
 
+		if (InputManager::getInstance().getKeyDown(GLFW_KEY_1)) {
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		}
+		if (InputManager::getInstance().getKeyDown(GLFW_KEY_2)) {
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		}
+
 		glClearColor(SKYBOX_COLOR[0], SKYBOX_COLOR[1], SKYBOX_COLOR[2], 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		camera.update(deltaTime);
-        glm::mat4 proj = camera.getProjectionMatrix();
-        glm::mat4 view = camera.getViewMatrix();
+		Camera::getInstance().update(deltaTime);
+		
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
 
-		for (auto& planet : planets) {
-			planet.update(deltaTime);
-		}
+		solarSystem.update(deltaTime);
+		solarSystem.render();
+
+		skybox.render();
+
+
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		glfwPollEvents();
-		glfwSwapBuffers(window.getWindow());
+		glfwSwapBuffers(Window::getInstance().getWindow());
 	}
+
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 
 	return 0;
 }

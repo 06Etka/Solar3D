@@ -6,7 +6,9 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 
 Window::Window() :window(nullptr) {
-	
+}
+
+void Window::initialize() {
 	if (!glfwInit()) {
 		std::cerr << "Failed to initialize GLFW" << std::endl;
 		return;
@@ -34,6 +36,11 @@ Window::Window() :window(nullptr) {
 	glfwGetFramebufferSize(window, &width, &height);
 	glViewport(0, 0, width, height);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+}
+
+Window& Window::getInstance() {
+	static Window instance;
+	return instance;
 }
 
 GLFWwindow* Window::getWindow() const {

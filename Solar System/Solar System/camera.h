@@ -11,6 +11,7 @@
 
 #include "window.h"
 #include "transform.h"
+#include "input_manager.h"
 
 class Camera : public Transform
 {
@@ -30,22 +31,30 @@ public:
     const float NEAR = 0.01f;
     const float FAR = 1000000.0f;
 
-    Camera(glm::vec3 position, glm::vec3 up, Window& window);
-    Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, Window& window);
+    static Camera& getInstance();
+
+    void initialize(glm::vec3 position, glm::vec3 up);
+    void initialize(float posX, float posY, float posZ, float upX, float upY, float upZ);
 
     glm::mat4 getProjectionMatrix();
     glm::mat4 getViewMatrix();
 
-	void update(float deltaTime);
+    void update(float deltaTime);
 
 private:
+    Camera();
+
+    Camera(const Camera&) = delete;
+    Camera& operator=(const Camera&) = delete;
+
     void updateCameraVectors();
 
     void processMouseMovement(float xOffset, float yOffset, bool constrainPitch);
     void handleMovement(float deltaTime);
     void toggleCursorVisibility();
 
-    Window& window;
+    Window* window;
+    InputManager* inputManager;
 };
 
 #endif // !CAMERA_H

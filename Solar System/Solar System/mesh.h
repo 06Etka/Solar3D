@@ -8,8 +8,6 @@
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
 
-#include "component.h"
-
 struct Vertex {
 	glm::vec3 position;
 	glm::vec3 normal;
@@ -20,12 +18,10 @@ struct Index {
 	unsigned int v1, v2, v3;
 };
 
-class Mesh : public Component
+class Mesh
 {
 public:
 	Mesh();
-
-	void update(float deltaTime) override;
 
 	std::vector<Vertex> vertices;
 	std::vector<Index> indices;

@@ -3,15 +3,12 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
 
-#include "component.h"
-
-class Transform : public Component
+class Transform
 {
 public:
 	Transform();
-
-	void update(float deltaTime) override;
 
 	void setPosition(const glm::vec3& newPos);
 	glm::vec3 getPosition() const;

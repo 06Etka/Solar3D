@@ -1,5 +1,5 @@
-#ifndef TEXTURE_LOADER_H
-#define TEXTURE_LOADER_H
+#ifndef TEXTURE_H
+#define TEXTURE_H
 
 #include <iostream>
 #include <string>
@@ -8,18 +8,19 @@
 
 #include "stb_image.h"
 
-class TextureLoader
+class Texture
 {
 public:
-	void loadTexture(const std::string& path);
-
+	Texture(const std::string& texturePath);
+	
 	void bindTexture() const;
 
 private:
+	void loadTexture(const std::string& texturePath);
+
 	unsigned int texture;
 	int width, height, nrChannels;
 	unsigned char* data;
 };
 
-
-#endif // !TEXTURE_LOADER_H
+#endif // !TEXTURE_H
