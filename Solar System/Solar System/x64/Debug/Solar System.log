@@ -1,2 +1,6 @@
-﻿  planet.cpp
+﻿  mesh.cpp
+C:\Users\Etka\source\repos\Solar3D\Solar System\Solar System\mesh.cpp(29,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Etka\source\repos\Solar3D\Solar System\Solar System\mesh.cpp(30,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  star.cpp
+  Generating Code...
   Solar System.vcxproj -> C:\Users\Etka\source\repos\Solar3D\Solar System\x64\Debug\Solar System.exe

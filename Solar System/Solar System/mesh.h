@@ -4,6 +4,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <vector>
+#include <map>
 
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
@@ -29,8 +30,7 @@ private:
 	void createSphere(std::vector<Vertex>& vertices, std::vector<Index>& indices);
 
 	const float RADIUS = 1;
-	const unsigned int RINGS = 32;
-	const unsigned int SEGMENTS = 32;
+	const unsigned int SUBDIVISIONS = 3;
 };
 
 #endif // !MESH_H
