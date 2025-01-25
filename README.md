@@ -1,4 +1,4 @@
-<img src="resources/logo_transparent.png" width="256" height="256">
+<img src="resources/logo_transparent.png" width="512" height="512">
 
 # Solar System Simulation
 
