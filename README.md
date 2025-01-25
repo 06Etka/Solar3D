@@ -1,3 +1,5 @@
+![](resources/logo_transparent.png)
+
 # Solar System Simulation
 
 This project is a simple 3D solar system simulation created using C++ and OpenGL. The program currently renders stationary planets, with a UV-sphere projection, and corresponding textures for each planet. Additionally, camera movement is enabled to navigate through the scene.
@@ -30,6 +32,7 @@ The following features are planned for future updates:
 - **Interactivity:** Introducing interactive elements, such as allowing the user to click on planets to get more information or to move them.
 
 ## Installation
+[Download](releases)
 
 ### Requirements
 
