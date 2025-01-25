@@ -7,13 +7,16 @@ Star::Star(const std::string& texturePath, float mass)
 }
 
 void Star::update(float deltaTime) {
-	float angularSpeed = 1.2f;
-	float deltaRotation = angularSpeed * deltaTime;
+    float period = 2.7f;
 
-	glm::vec3 currentRotation = getRotation();
-	currentRotation.y += deltaRotation;
+    float angularSpeed = 2.0f * M_PI / period;
 
-	setRotation(currentRotation);
+    float deltaRotation = angularSpeed * deltaTime;
+
+    glm::vec3 currentRotation = getRotation();
+    currentRotation.y += deltaRotation;
+
+    setRotation(currentRotation);
 }
 
 void Star::render() {

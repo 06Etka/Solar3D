@@ -1,48 +1,36 @@
 #include "solar_system.h"
 
-#include "imgui/imgui.h"
-
-#pragma region MERCURY
-const float MERCURY_MASS = 0.330f;
-float mercuryOrbitRadius = 57.9f;
-float mercruyEccentricity = 0.206f;
-float mercuryDiameter = 0.4879f;
-float mercuryStartPos = 57.9f;
-#pragma endregion
-
-#pragma region VENUS
-const float VENUS_MASS = 4.87f;
-float venusOrbitRadius = 108.2f;
-float venusEccentricity = 0.007f;
-float venusDiameter = 1.2104f;
-float venusStartPos = 108.2f;
-#pragma endregion
-
-#pragma region EARTH
-const float EARTH_MASS = 5.97f;
-float earthOrbitRadius = 149.6f;
-float earthEccentricity = 0.017f;
-float earthDiameter = 1.2756f;
-float earthStartPos = 149.6f;
-#pragma endregion
-
-#pragma region MARS
-const float MARS_MASS = 0.642f;
-float marsOrbitRadius = 228.0f;
-float marsEccentricity = 0.094f;
-float marsDiameter = 0.6792f;
-float marsStartPos = 228.0f;
-#pragma endregion
-
-
 SolarSystem::SolarSystem() 
 {
 	sun = new Star("assets/textures/sun.png", 1.989f);
-	sun->setScale(glm::vec3(13.92f));
-	addPlanet("assets/textures/mercury.png", sun, MERCURY_MASS, mercuryOrbitRadius, mercruyEccentricity, glm::vec3(mercuryDiameter), glm::vec3(mercuryStartPos, 0.0f, 0.0f));
-	addPlanet("assets/textures/venus.png", sun, VENUS_MASS, venusOrbitRadius, venusEccentricity, glm::vec3(venusDiameter), glm::vec3(venusStartPos, 0.0f, 0.0f));
-	addPlanet("assets/textures/earth.png", sun, EARTH_MASS, earthOrbitRadius, earthEccentricity, glm::vec3(earthDiameter), glm::vec3(earthStartPos, 0.0f, 0.0f));
-	addPlanet("assets/textures/mars.png", sun, MARS_MASS, marsOrbitRadius, marsEccentricity, glm::vec3(marsDiameter), glm::vec3(marsStartPos, 0.0f, 0.0f));
+	sun->setScale(glm::vec3(14.0f));
+
+    std::ifstream inputFile("assets/planets.json");
+
+    if (!inputFile.is_open()) {
+        std::cerr << "Failed to open the file!" << std::endl;
+        return;
+    }
+
+    nlohmann::json jsonData;
+    inputFile >> jsonData;
+
+    auto planets = jsonData["planets"];
+
+    for (const auto& planet : planets) {
+        std::string name = planet["name"];
+        std::string texturePath = planet["texture"];
+        double mass = planet["mass"];
+        double distance = planet["distance_from_sun"];
+        double eccentricity = planet["eccentricity"];
+        double diameter = planet["diameter"];
+        double rotationPeriod = planet["rotation_period"];
+
+        addPlanet(texturePath, sun, mass, distance, eccentricity, rotationPeriod, glm::vec3(diameter / 1.5f), glm::vec3(distance, 0.0f, 0.0f));
+
+        Orbit newOrbit(distance, eccentricity);
+        orbits.emplace_back(newOrbit);
+    }
 }
 
 void SolarSystem::update(float deltaTime) {
@@ -61,10 +49,15 @@ void SolarSystem::render() {
 	{
 		planet.render();
 	}
+
+    for (auto& orbit : orbits)
+    {
+        orbit.render();
+    }
 }
 
-void SolarSystem::addPlanet(const std::string& texturePath, CelestialBody* orbitParent, float mass, float orbitRadius, float eccentricity, glm::vec3 scale, glm::vec3 position) {
-	Planet newPlanet(texturePath, orbitParent, mass, orbitRadius, eccentricity);
+void SolarSystem::addPlanet(const std::string& texturePath, CelestialBody* orbitParent, float mass, float orbitRadius, float eccentricity, float rotationPeriod, glm::vec3 scale, glm::vec3 position) {
+	Planet newPlanet(texturePath, orbitParent, mass, orbitRadius, eccentricity, rotationPeriod);
 	newPlanet.setScale(scale);
 	newPlanet.setPosition(position);
 	planets.emplace_back(newPlanet);

@@ -1,24 +1,41 @@
 #include "planet.h"
 
-Planet::Planet(const std::string& texturePath, CelestialBody* orbitParent, float mass, float orbitRadius, float eccentricity)
-	: camera(Camera::getInstance()), CelestialBody(texturePath, mass), orbitParent(orbitParent), orbitRadius(orbitRadius), eccentricity(eccentricity)
+Planet::Planet(const std::string& texturePath, CelestialBody* orbitParent, float mass, float orbitRadius, float eccentricity, float rotationPeriod)
+	: camera(Camera::getInstance()), CelestialBody(texturePath, mass), orbitParent(orbitParent), orbitRadius(orbitRadius), eccentricity(eccentricity),
+	rotationPeriod(rotationPeriod)
 {
 	shader = new Shader("planet.vert", "planet.frag");
 }
 
-void Planet::update(float deltaTime) {
-    float semiMajorAxis = orbitRadius;
-    float semiMinorAxis = orbitRadius * sqrt(1 - eccentricity * eccentricity);
+void Planet::updateRotation(float deltaTime) {
+	float angularSpeed = 2.0f * M_PI / rotationPeriod;
 
-    float distance = semiMajorAxis * (1 - eccentricity * eccentricity) / (1 + eccentricity * cos(angle));
+	float deltaRotation = angularSpeed * deltaTime;
+
+	glm::vec3 currentRotation = getRotation();
+	currentRotation.y += deltaRotation;
+
+	setRotation(currentRotation);
+}
+
+void Planet::updatePosition(float deltaTime) {
+	float semiMajorAxis = orbitRadius;
+	float semiMinorAxis = orbitRadius * sqrt(1 - eccentricity * eccentricity);
+
+	float distance = semiMajorAxis * (1 - eccentricity * eccentricity) / (1 + eccentricity * cos(angle));
 
 	float angularSpeed = sqrt(orbitParent->getMass() * 6.8f / (semiMajorAxis * semiMajorAxis));
-    angle += angularSpeed * deltaTime;
+	angle += angularSpeed * deltaTime;
 
-    float newPosX = orbitParent->getPosition().x + distance * cos(angle);
+	float newPosX = orbitParent->getPosition().x + distance * cos(angle);
 	float newPosZ = orbitParent->getPosition().z + distance * sin(angle);
 
-    setPosition(glm::vec3(newPosX, 0, newPosZ));
+	setPosition(glm::vec3(newPosX, 0, newPosZ));
+}
+
+void Planet::update(float deltaTime) {
+	updateRotation(deltaTime);
+	updatePosition(deltaTime);
 }
 
 void Planet::render() {

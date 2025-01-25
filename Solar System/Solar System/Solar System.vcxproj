@@ -161,6 +161,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="mesh_renderer.cpp" />
+    <ClCompile Include="orbit.cpp" />
     <ClCompile Include="planet.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="skybox.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="input_manager.h" />
     <ClInclude Include="mesh.h" />
     <ClInclude Include="mesh_renderer.h" />
+    <ClInclude Include="orbit.h" />
     <ClInclude Include="planet.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="skybox.h" />
@@ -199,6 +201,8 @@
   <ItemGroup>
     <None Include="default.frag" />
     <None Include="default.vert" />
+    <None Include="orbit.frag" />
+    <None Include="orbit.vert" />
     <None Include="planet.frag" />
     <None Include="planet.vert" />
     <None Include="skybox.frag" />
