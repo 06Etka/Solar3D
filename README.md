@@ -30,6 +30,7 @@ The following features are planned for future updates:
 - **Interactivity:** Introducing interactive elements, such as allowing the user to click on planets to get more information or to move them.
 
 ## Installation
+[Download](releases)
 
 ### Requirements
 
