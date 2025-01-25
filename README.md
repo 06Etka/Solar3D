@@ -9,6 +9,8 @@ This project is a simple 3D solar system simulation created using C++ and OpenGL
 - **Stationary Planets:** 3D mesh of planets with corresponding textures.
 - **UV Sphere Projection:** Planets are represented by UV spheres, which are mapped with textures.
 - **Camera Movement:** Interactive camera controls to navigate the scene.
+- **Planets Orbiting:** Implementing orbital mechanics for the planets to orbit around a central star.
+- **Lighting System:** Adding dynamic lighting and shadows to improve the scene's realism.
 
 ## Current Technologies Used
 
@@ -19,15 +21,12 @@ This project is a simple 3D solar system simulation created using C++ and OpenGL
 
 ## Screenshots
 
-![Planets Scene](resources/main.png)  
+![Planets Scene](resources/main2.png)  
 *Sun and Gaia*
 
 ## Future Plans
 
 The following features are planned for future updates:
-
-- **Planets Orbiting:** Implementing orbital mechanics for the planets to orbit around a central star.
-- **Lighting System:** Adding dynamic lighting and shadows to improve the scene's realism.
 - **User Interface (UI):** Adding an on-screen interface to display relevant information (e.g., planet names, distance from the sun).
 - **Interactivity:** Introducing interactive elements, such as allowing the user to click on planets to get more information or to move them.
 
