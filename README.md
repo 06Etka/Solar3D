@@ -1,4 +1,4 @@
-![](resources/logo_transparent.png)
+![](resources/logo_transparent.png = 250x205)
 
 # Solar System Simulation
 
