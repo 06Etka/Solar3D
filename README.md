@@ -13,12 +13,12 @@ This project is a simple 3D solar system simulation created using C++ and OpenGL
 - **Lighting System:** Adding dynamic lighting and shadows to improve the scene's realism.
 
 ## Controls
-**WASD** Move forward, backward, left, and right.
-**E** Go up.
-**Q** Go down.
-**Z** Toggle cursor.
-**1** Draw mode.
-**2** Wireframe mode.
+- **WASD** Move forward, backward, left, and right.
+- **E** Go up.
+- **Q** Go down.
+- **Z** Toggle cursor.
+- **1** Draw mode.
+- **2** Wireframe mode.
 
 ## Current Technologies Used
 
